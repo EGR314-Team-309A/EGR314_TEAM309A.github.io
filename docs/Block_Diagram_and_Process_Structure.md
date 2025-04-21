@@ -14,7 +14,7 @@ title: Block/Process Diagrams & Message Structure
 
 ## Process Diagram
 
-![Image](https://github.com/user-attachments/assets/f9f6a9df-799b-4281-8727-621961ece887)
+![Image](https://github.com/user-attachments/assets/30c722b9-4f89-4abe-b38e-402abeac5138)
 
 ## Message Structure
 
