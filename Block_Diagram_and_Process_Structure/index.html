@@ -928,29 +928,7 @@
 <h3 id="connector-diagram">Connector Diagram</h3>
 <p><a class="glightbox" href="https://github.com/user-attachments/assets/5181d0f3-c607-4b25-8f0b-ecfba9d1c3aa" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Image" src="https://github.com/user-attachments/assets/5181d0f3-c607-4b25-8f0b-ecfba9d1c3aa" /></a></p>
 <h2 id="process-diagram">Process Diagram</h2>
-<pre class="mermaid"><code>sequenceDiagram
-autonumber
-actor In-Person User
-In-Person User--&gt;&gt;Bruce: Change Motor Direction
-Bruce-&gt;&gt;Baron: Change Motor Direction
-Baron-&gt;&gt;Shaurya: Change Motor Direction
-Shaurya-&gt;&gt;Aadish: Change Motor Direction
-Aadish-&gt;&gt;Aadish: Motor Direction Changed&lt;br&gt;(Trash)
-loop Every Second
-  Shaurya-&gt;&gt;Aadish: Update Motor Speed
-  Aadish-&gt;&gt;Aadish: Motor Speed Updated&lt;br&gt;(Trash)
-end
-Shaurya-&gt;&gt;Aadish: Rotational Velocity
-Aadish-&gt;&gt;Baron: Rotational Velocity
-Baron-&gt;&gt;Bruce: Rotational Velocity
-actor Web User
-Baron--&gt;&gt;Web User: Display Rotational Velocity
-Bruce--&gt;&gt;In-Person User: Display Rotational Velocity
-actor Web User
-Web User--&gt;&gt;Baron: Change Motor Direction
-Baron-&gt;&gt;Shaurya: Change Motor Direction
-Shaurya-&gt;&gt;Aadish: Change Motor Direction
-Aadish-&gt;&gt;Aadish: Motor Direction Changed&lt;br&gt;(Trash)</code></pre>
+<p><a class="glightbox" href="https://github.com/user-attachments/assets/f9f6a9df-799b-4281-8727-621961ece887" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Image" src="https://github.com/user-attachments/assets/f9f6a9df-799b-4281-8727-621961ece887" /></a></p>
 <h2 id="message-structure">Message Structure</h2>
 <h3 id="ids">IDs</h3>
 <p>Each user has been assigned a user ID to make communication easier between users. Any messages sent will contain the sender and reciever ID to identify where its coming from and where its going to. Below is a list of IDs for each user in our project</p>
