@@ -1,5 +1,5 @@
 ---
-title: Block/Process Diagrams & Message Structure (Shaurya & Aadish)
+title: Block/Process Diagrams & Message Structure
 ---
 
 ## Block Diagram
