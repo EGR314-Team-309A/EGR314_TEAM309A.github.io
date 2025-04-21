@@ -4,6 +4,16 @@ title: Block/Process Diagrams & Message Structure (Shaurya & Aadish)
 
 ## Block Diagram
 
+![Team Block Diagram](https://github.com/user-attachments/assets/72379584-5125-4fc5-bb82-a87f63208a6f)
+
+
+
+## Connector Diagram
+
+![Team Connector Diagram](https://github.com/user-attachments/assets/6d18d97e-3302-4a01-82d8-23ad3bef1ecd)
+
+
+
 ### General System
 
 ```
