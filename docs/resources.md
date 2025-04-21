@@ -18,7 +18,7 @@ title: Resources
 
 - [PIC18 Comparison Document](https://ww1.microchip.com/downloads/en/DeviceDoc/30327b.pdf)
 - [PIC18-Q10 Product Family](https://www.microchip.com/en-us/products/microcontrollers-and-microprocessors/8-bit-mcus/pic-mcus/pic18f-q10)
-- [PIC18F47Q10 LINK ]([https://www.microchip.com/en-us/products/microcontrollers-and-microprocessors/8-bit-mcus/pic-mcus/pic18f-q10](https://www.microchip.com/en-us/product/pic18f47q10))
+- [PIC18F47Q10 LINK ]([https://www.microchip.com/en-us/products/microcontrollers-and-microprocessors/8-bit-mcus/pic-mcus/pic18f-q10])
 
 ## Battery
 
