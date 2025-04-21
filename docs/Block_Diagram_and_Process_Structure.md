@@ -14,31 +14,7 @@ title: Block/Process Diagrams & Message Structure
 
 ## Process Diagram
 
-``` mermaid
-sequenceDiagram
-autonumber
-actor In-Person User
-In-Person User-->>Bruce: Change Motor Direction
-Bruce->>Baron: Change Motor Direction
-Baron->>Shaurya: Change Motor Direction
-Shaurya->>Aadish: Change Motor Direction
-Aadish->>Aadish: Motor Direction Changed<br>(Trash)
-loop Every Second
-  Shaurya->>Aadish: Update Motor Speed
-  Aadish->>Aadish: Motor Speed Updated<br>(Trash)
-end
-Shaurya->>Aadish: Rotational Velocity
-Aadish->>Baron: Rotational Velocity
-Baron->>Bruce: Rotational Velocity
-actor Web User
-Baron-->>Web User: Display Rotational Velocity
-Bruce-->>In-Person User: Display Rotational Velocity
-actor Web User
-Web User-->>Baron: Change Motor Direction
-Baron->>Shaurya: Change Motor Direction
-Shaurya->>Aadish: Change Motor Direction
-Aadish->>Aadish: Motor Direction Changed<br>(Trash)
-```
+![Image](https://github.com/user-attachments/assets/f9f6a9df-799b-4281-8727-621961ece887)
 
 ## Message Structure
 
