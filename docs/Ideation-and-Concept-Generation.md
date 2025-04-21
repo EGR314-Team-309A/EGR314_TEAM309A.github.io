@@ -47,7 +47,6 @@ After narrowing down our ideas into a handful of options that meet the requireme
 ## Concept Sketch
 
 ![Concept Drawing drawio](https://github.com/user-attachments/assets/7953a92b-3601-4429-9cd9-148a5b65bb71)
-![Concept Drawing drawio - Copy](https://github.com/user-attachments/assets/b80148b3-2f9e-4001-af92-8298d570dfa4)
 
 The Spinning Top Interactive Exhibit is designed to engage users with a interactive demonstration of balance, motion, and physics principles. Its motorized spinning mechanism, powered by a removable battery, ensures smooth and stable operation. There are adjustable PCB slots to ensure weight is distributed across the top to keep it balanced. The inner shell houses PCB components and ribbon cable slots, ensuring secure connections and minimal interference during operation. The motor at the base provides a user controlled speed, keeping the top upright and balanced. An integrated temperature sensor senses the temperature values and sends them to the motor PCB using UART communication protocol. When the temperature increases over a certain limit, the direction of the motor changes.
 
