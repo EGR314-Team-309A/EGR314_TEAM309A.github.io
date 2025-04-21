@@ -1,65 +1,96 @@
 ---
-title: Block/Process Diagrams & Message Structure
+title: Block/Process Diagrams & Message Structure (Shaurya & Aadish)
 ---
 
 ## Block Diagram
 
-### General Diagram
+### General System
 
-![Image](https://github.com/user-attachments/assets/0c77f48d-81e9-4630-be1a-b01ad48d87c3)
+```
+[Shaurya (Temp Sensor)] → UART → [Aadish (Motor Driver)]
+                                    ↑
+                            UART ACK ← LED On
+```
 
-### Connector Diagram
+- Shaurya uses the **TC74A4-3.3VCTTR** I2C temperature sensor.
+- Aadish uses the **IFX9201SG** H-Bridge motor driver.
+- UART is used for all communication between the two.
 
-![Image](https://github.com/user-attachments/assets/5181d0f3-c607-4b25-8f0b-ecfba9d1c3aa)
+---
 
 ## Process Diagram
 
-![Image](https://github.com/user-attachments/assets/30c722b9-4f89-4abe-b38e-402abeac5138)
+```mermaid
+sequenceDiagram
+actor Environment
+actor Shaurya
+actor Aadish
+
+loop Every 1s
+  Environment-->>Shaurya: Ambient Temperature
+  Shaurya->>Shaurya: Read Temp via I2C
+  Shaurya-->>Aadish: Motor Direction (Forward if >25°C, Reverse if ≤25°C)
+  Aadish->>Aadish: Change Motor Direction
+  Aadish-->>Shaurya: ACK Received
+  Shaurya->>Shaurya: Turn on ACK LED
+end
+```
+
+---
 
 ## Message Structure
 
 ### IDs
 
-Each user has been assigned a user ID to make communication easier between users. Any messages sent will contain the sender and reciever ID to identify where its coming from and where its going to. Below is a list of IDs for each user in our project
+| ID | User     |
+|----|----------|
+| S  | Shaurya  |
+| A  | Aadish   |
 
-| ID | User |
-|---|---|
-| M | Bruce |
-| B | Baron |
-| A | Aadish |
-| S | Shaurya |
+---
 
 ### Message Types
 
-The message types are defined by the Process Diagram. Our Process Diagram only has 3 types of messages that are send between users, so below are those messages and their functions.
+| Type ID | Description             |
+|---------|-------------------------|
+| 1       | Motor Direction Command |
+| 2       | Acknowledgement (ACK)   |
 
-| Message Type | Description |
-|---|---|
-| 1 | Change Motor Direction |
-| 2 | Update Motor Speed |
-| 3 | Rotational Velocity |
+---
 
 ### Message Variations
 
-While message types are meant to define each message in the Process Diagram, there can be multiple variations within a message type. A motor direction message can mean to move the motor forward or reverse, so below is a breakdown of each message variation in each type and its ID.
+| Type | Meaning            | Message ID |
+|------|--------------------|------------|
+| 1    | Motor Forward       | 0x0040     |
+| 1    | Motor Reverse       | 0x0041     |
+| 2    | ACK                 | 0x00AF     |
 
-| Message Type | Variations | ID |
-|---|---|---|
-| 1 | Motor Direction Forward | 0x0040 |
-| 1 | Motor Direction Reverse | 0x0041 |
-| 2 | Motor Speed Increase | 0x0042 |
-| 2 | Motor Speed Decrease | 0x0043 |
-| 3 | Rotational Velocity | Varies |
+---
 
-### Messages Structure
+### Serial Message Format (8 Bytes Total)
 
-This is a breakdown of how serial messages will be sent. It shows each byte in a message and what its use is.
+| Byte #   | Purpose             | Example Value         |
+|----------|---------------------|------------------------|
+| 1–2      | Prefix              | `AZ`                  |
+| 3        | Sender ID           | `S` or `A`            |
+| 4        | Receiver ID         | `A` or `S`            |
+| 5–6      | Data (message ID)   | e.g., `0x0040`        |
+| 7–8      | Suffix              | `YB`                  |
 
-- Any messages sent to Bruce will be sent to Baron through UART and then sent to Bruce through MQTT server.
-- Any messages sent from Bruce will be sent to Baron through MQTT server and then sent to there respective user through UART.
+---
 
-| Message Type | Byte 1-2 (Prefix)<br>(uint16_t) | Byte 3 (Sender ID)<br>(uint8_t) | Byte 4 (Reciever ID)<br>(uint8_t) | Byte 5-6 (Data)<br>(uint16_t) | Byte 7-8 (Suffix)<br>(uint16_t) |
-|---|---|---|---|---|---|
-| 1 | AZ | Bruce | Aadish | Motor Direction X | YB |
-| 2 | AZ | Shaurya | Aadish | Motor Speed X | YB |
-| 3 | AZ | Shaurya | Bruce | Rotational Velocity | YB |
+### Example Message Flow
+
+#### If temperature is 28°C:
+- Shaurya sends: `AZ`, `S`, `A`, `0x0040`, `YB`
+- Aadish sets motor direction **forward**
+- Aadish replies: `AZ`, `A`, `S`, `0x00AF`, `YB`
+- Shaurya turns on LED to confirm ACK
+
+#### If temperature is 20°C:
+- Shaurya sends: `AZ`, `S`, `A`, `0x0041`, `YB`
+- Aadish sets motor direction **reverse**
+- Aadish replies with ACK and LED lights up
+
+---
