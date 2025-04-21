@@ -10,7 +10,7 @@ We want our exhibit to inspire future STEM students by showcasing the real-world
 
 Target Audience
 
-For this project, we believe that our target audience is going to be high school students and some adults with a basic high school education. Since our showcase will be with ASU, the audience will have a varying amount of people with different backgrounds and involvement with the school. Most of the users will have done many projects or designs similar to what we may have, but we hope to get some younger users as well.
+For this project, we know that our target audience is going to be high school students and some adults with a basic high school education. Since our showcase will be with ASU, the audience will have a varying amount of people with different backgrounds and involvement with the school. Most of the users will have done many projects or designs similar to what we may have, but we hope to get some younger users as well.
 
 ## Idea Generation
 
