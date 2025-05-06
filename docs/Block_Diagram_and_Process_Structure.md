@@ -7,19 +7,30 @@ title: Block/Process Diagrams & Message Structure
 ![Team Block Diagram](https://github.com/user-attachments/assets/72379584-5125-4fc5-bb82-a87f63208a6f)
 
 # Explaination:   
-As Team 309A in the EGR314 course, our project goal was to demonstrate modularity, sensor-actuator interaction, and the use of standard communication protocols. We structured the block diagram to reflect a clear division between sensing and actuation, each handled by custom-built PCBs developed by different team members.  
-+Shaurya’s PCB integrates a temperature sensor with the PIC18F27Q10 microcontroller via I2C, enabling precise temperature readings with minimal wiring complexity.  
-+Aadish’s PCB features a PIC18F47Q10 microcontroller that interfaces with the IFX9201SGAUMA1 motor driver via SPI, allowing fast, reliable motor control.  
-+Inter-PCB communication is handled via UART, with TX and RX lines routed through pin 2 of our ribbon cable headers, satisfying the product requirement for UART-based data exchange between subsystems.  
-+The ribbon cable simplifies physical connectivity, aligning both power and communication signals for ease of use and testing.  
 
-This block structure meets all outlined requirements:   
-+SPI for motor control.   
-+I2C for sensor reading.   
-+UART between PCBs.   
-+Shared PIC microcontroller family.   
-+One sensor (temperature) and one actuator (motor).   
-+Compact and modular design using ribbon cables.  
+As Team 309A in the EGR314 course, our project goal was to demonstrate modularity, sensor-actuator interaction, and the use of standard communication protocols. We structured the block diagram to reflect a clear division between sensing and actuation, each handled by custom-built PCBs developed by different team members.
+
+- Shaurya’s PCB integrates a temperature sensor with the PIC18F27Q10 microcontroller via I2C, enabling precise temperature readings with minimal wiring complexity.
+
+- Aadish’s PCB features a PIC18F47Q10 microcontroller that interfaces with the IFX9201SGAUMA1 motor driver via SPI, allowing fast, reliable motor control.
+
+- Inter-PCB communication is handled via UART, with TX and RX lines routed through pin 2 of our ribbon cable headers, satisfying the product requirement for UART-based data exchange between subsystems.
+
+- The ribbon cable simplifies physical connectivity, aligning both power and communication signals for ease of use and testing.
+
+This block structure meets all outlined requirements:
+
+- SPI for motor control.
+
+- I2C for sensor reading.
+
+- UART between PCBs.
+
+-Shared PIC microcontroller family.
+
+- One sensor (temperature) and one actuator (motor).
+
+- Compact and modular design using ribbon cables.
 
 
 By designing a structured and readable block diagram, we ensured clarity in system functionality and adherence to modular design principles.  
