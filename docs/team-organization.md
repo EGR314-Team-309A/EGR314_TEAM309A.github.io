@@ -14,3 +14,13 @@ We came up with this statement by focusing on our top priorities as a team. We w
 
 Our team used the core concept of inspiring K-12 STEM education do develop our mission statement. We wanted to create a product that not only encourages engineering thinking but is also practical and easy to use. Through discussion, we refined our statement to reflect our shared passion for STEM and how we can use that to make STEM education accessible and impactful.
 
+## Contact Information:  
+Aadish Lele  
+Motor Driver Subsystem:  
+- [Aadish Website - Actuator](https://aadishlele.github.io/)  
+
+Shaurya Manglik  
+Temperature Sensor Subsystem:   
+- [Shaurya Website - Sensor](https://shauryamanglik.github.io/shauryamanglik/)  
+
+
