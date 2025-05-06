@@ -1117,16 +1117,36 @@ loop Every 1s
   Shaurya-&gt;&gt;Shaurya: Turn on ACK LED
 end</code></pre>
 <h3 id="explaination_1">Explaination</h3>
-<p>Our communication sequence diagram outlines the real-time interaction between the sensor and actuator subsystems: <br />
-- Temperature Reading: The PIC18F27Q10 on Shaurya's PCB reads the temperature sensor using I2C. <br />
-- Data Transmission: The temperature value is processed and transmitted via UART to Aadish's PCB. <br />
-- Motor Response: Upon receiving the temperature data, the PIC18F47Q10 interprets it and sends SPI commands to the motor driver, adjusting the motor’s speed or direction. <br />
-- Feedback Signal (Optional): A confirmation or status signal can be sent back over UART to verify correct action.   </p>
-<p>This satisfies user needs by creating a system that is: <br />
-- Interactive: Motor behavior dynamically reflects real-time environmental data. <br />
-- Modular: Communication between independent subsystems is clearly defined.<br />
-- Scalable: The message structure and sequence allow for additional features like acknowledgments or error handling.<br />
-- The functional sequence supports intuitive behavior (e.g., motor speeding up in response to rising temperature), making it understandable and meaningful for both users and evaluators.  </p>
+<p>Our communication sequence diagram outlines the real-time interaction between the sensor and actuator subsystems:   </p>
+<ul>
+<li>
+<p>Temperature Reading: The PIC18F27Q10 on Shaurya's PCB reads the temperature sensor using I2C.</p>
+</li>
+<li>
+<p>Data Transmission: The temperature value is processed and transmitted via UART to Aadish's PCB.</p>
+</li>
+<li>
+<p>Motor Response: Upon receiving the temperature data, the PIC18F47Q10 interprets it and sends SPI commands to the motor driver, adjusting the motor’s speed or direction.</p>
+</li>
+<li>
+<p>Feedback Signal (Optional): A confirmation or status signal can be sent back over UART to verify correct action.   </p>
+</li>
+</ul>
+<p>This satisfies user needs by creating a system that is:   </p>
+<ul>
+<li>
+<p>Interactive: Motor behavior dynamically reflects real-time environmental data.</p>
+</li>
+<li>
+<p>Modular: Communication between independent subsystems is clearly defined.</p>
+</li>
+<li>
+<p>Scalable: The message structure and sequence allow for additional features like acknowledgments or error handling.</p>
+</li>
+<li>
+<p>The functional sequence supports intuitive behavior (e.g., motor speeding up in response to rising temperature), making it understandable and meaningful for both users and evaluators.</p>
+</li>
+</ul>
 <hr />
 <h2 id="message-structure">Message Structure</h2>
 <h3 id="ids">IDs</h3>
