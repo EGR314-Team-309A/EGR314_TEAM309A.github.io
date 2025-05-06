@@ -22,4 +22,15 @@ title: Resources
 
 ## Battery
 
-- [9V-12V Battery](https://www.amazon.com/Duracell-Coppertop-Long-lasting-All-Purpose-Household/dp/B00000JHQG/ref=sr_1_9_mod_primary_new?crid=2QVRBWDHPV5QP&dib=eyJ2IjoiMSJ9.UTIEEJxrXzAacW7rXzP5bec0dW5QSCJ0HnwTdpNMhLALom3dG_wNb8pUWVIumuHL83OOk6yIbt5z5S1Jmq-oXjCuSrJxCKnh9Q0HlAWyDNo3mPt0K3YGs3vhrrzA3fWhVoc71mQWAutZllFdxbzcBSwwtQvHp-MDdq6cUtO-UvPR-U8sU_ol0Xui7XlwnB_nLSYqHFQXSQ7snNQF06Aktgu2_uypp1XI_6wTcSvx3fZKqfeltBAxhB0uJYBBECc3XCZdcNEF_19ai2LislpTeOQfPX4rAV_F1xRfx9asJkM.lKGq95UxEr9buSZNNRBUWdZqqrjjlPXDErh85t86t3E&dib_tag=se&keywords=battery+9V&qid=1745201042&sbo=RZvfv%2F%2FHxDF%2BO5021pAnSA%3D%3D&sprefix=battery+9v%2Caps%2C292&sr=8-9)
+- [9V-12V Battery](https://www.amazon.com/Duracell-Coppertop-Long-lasting-All-Purpose-Household/dp/B00000JHQG/ref=sr_1_9_mod_primary_new?crid=2QVRBWDHPV5QP&dib=eyJ2IjoiMSJ9.UTIEEJxrXzAacW7rXzP5bec0dW5QSCJ0HnwTdpNMhLALom3dG_wNb8pUWVIumuHL83OOk6yI
+bt5z5S1Jmq-oXjCuSrJxCKnh9Q0HlAWyDNo3mPt0K3YGs3vhrrzA3fWhVoc71mQWAutZllFdxbzcBSwwtQvHp-MDdq6cUtO-UvPR-U8sU_ol0Xui7XlwnB_nLSYqHFQXSQ7snNQF06Aktgu2_uypp1XI_6wTcSvx3fZKqfeltBAxhB0uJYBBECc3XCZdcNEF_19ai2LislpTeOQfPX4rAV_F1xRfx9asJkM.lKGq95UxEr9buSZNNRBUWdZqqrjjlPXDErh85t86t3E&dib_tag=se&keywords=battery+9V&qid=1745201042&sbo=RZvfv%2F%2FHxDF%2BO5021pAnSA%3D%3D&sprefix=battery+9v%2Caps%2C292&sr=8-9)
+
+
+## Videos and Pictures of the Project
+
+Final Project picture:  
+![Image](https://github.com/user-attachments/assets/d557398a-4ba1-49b4-b562-02070472b781)   
+
+Both PCBs combined Picture:  
+![Image](https://github.com/user-attachments/assets/8fa2d518-7e46-4f50-95ea-8ea13e5b3650)
+
