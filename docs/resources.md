@@ -34,3 +34,9 @@ Final Project picture:
 Both PCBs combined Picture:  
 ![Image](https://github.com/user-attachments/assets/8fa2d518-7e46-4f50-95ea-8ea13e5b3650)
 
+Team 309A at Innovation Showcase:
+![Image](https://github.com/user-attachments/assets/eb30f8a9-5f2a-4011-820d-8725074b773e)
+
+Working System Video:
+[![Watch This](https://www.youtube.com/shorts/XV8SjJ4b8kg/hqdefault.jpg)](https://www.youtube.com/shorts/XV8SjJ4b8kg)
+
