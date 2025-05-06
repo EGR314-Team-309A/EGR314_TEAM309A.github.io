@@ -50,8 +50,8 @@ By designing a structured and readable block diagram, we ensured clarity in syst
                             UART ACK ← LED On
 ```
 
-- Shaurya uses the **TC74A4-3.3VCTTR** I2C temperature sensor.
-- Aadish uses the **IFX9201SG** H-Bridge motor driver.
+- Shaurya uses the **AHT21** I2C temperature sensor.
+- Aadish uses the **IFX9201SGAUMA1** H-Bridge motor driver.
 - UART is used for all communication between the two.
 
 ---
@@ -102,57 +102,58 @@ This satisfies user needs by creating a system that is:
 
 | ID | User     |
 |----|----------|
-| S  | Shaurya  |
-| A  | Aadish   |
+| 0xFC  | Shaurya  |
+| 0xFD  | Aadish   |
 
 ---
 
 ### Message Types
 
-| Type ID | Description             |
-|---------|-------------------------|
-| 1       | Motor Direction Command |
-| 2       | Acknowledgement (ACK)   |
+**Type 1 – Motor Direction Command (Sent from Shaurya to Aadish)**
+
+| Condition           | Message ID | Meaning        |
+|---------------------|------------|----------------|
+| Temp ≤ 25°C         | 0x01       | Motor Forward  |
+| 25°C < Temp ≤ 30°C  | 0x02       | Motor Reverse  |
+| Temp > 30°C         | 0x03       | Motor Off      |
+
+**Type 2 – Acknowledgment (Sent from Aadish to Shaurya)**
+
+| Message ID | Meaning                                  |
+|------------|-------------------------------------------|
+| 0x01       | Motor Forward Confirmation – Blink RB0    |
+| 0x02       | Motor Reverse Confirmation – Blink RB4    |
+| 0x03       | Motor Off Confirmation – Blink RB0 & RB4  |
 
 ---
 
-### Message Variations
+### Serial Message Format
 
-| Type | Meaning            | Message ID |
-|------|--------------------|------------|
-| 1    | Motor Forward       | 0x0040     |
-| 1    | Motor Reverse       | 0x0041     |
-| 2    | ACK                 | 0x00AF     |
-
----
-
-### Serial Message Format (8 Bytes Total)
-
-| Byte #   | Purpose             | Example Value         |
-|----------|---------------------|------------------------|
-| 1–2      | Prefix              | `AZ`                  |
-| 3        | Sender ID           | `S` or `A`            |
-| 4        | Receiver ID         | `A` or `S`            |
-| 5–6      | Data (message ID)   | e.g., `0x0040`        |
-| 7–8      | Suffix              | `YB`                  |
+| Field        | Example (Motor Forward) |
+|--------------|--------------------------|
+| Prefix       | FS                       |
+| Sender ID    | S                        |
+| Receiver ID  | A                        |
+| Data         | 01 (Forward)             |
+| Suffix       | FS                       |
 
 ---
 
 ### Example Message Flow
 
 #### If temperature is  greater than 25°C and less than 30°C:
-- Shaurya sends: `AZ`, `S`, `A`, `0x0040`, `YB`
+- Shaurya sends: `FS`, `S`, `A`, `0x02`, `FS`
 - Aadish sets motor direction **forward**
-- Aadish replies: `AZ`, `A`, `S`, `0x00AF`, `YB`
+- Aadish replies: `FS`, `A`, `S`, `0x02`, `FS`
 - Shaurya turns on LED to confirm ACK
 
 #### If temperature is less than 25°C:
-- Shaurya sends: `AZ`, `S`, `A`, `0x0041`, `YB`
+- Shaurya sends: `FS`, `S`, `A`, `0x01`, `FS`
 - Aadish sets motor direction **reverse**
 - Aadish replies with ACK and LED lights up
 
 #### If temperature is above 30°C:
-- Shaurya sends: `AZ`, `S`, `A`, `0x0041`, `YB`
+- Shaurya sends: `FS`, `S`, `A`, `0x03`, `FS`
 - Aadish sets motor direction **stop**
 - Aadish replies with ACK and LED lights up
 
