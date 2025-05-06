@@ -618,18 +618,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#message-variations" class="md-nav__link">
+  <a href="#serial-message-format" class="md-nav__link">
     <span class="md-ellipsis">
-      Message Variations
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#serial-message-format-8-bytes-total" class="md-nav__link">
-    <span class="md-ellipsis">
-      Serial Message Format (8 Bytes Total)
+      Serial Message Format
     </span>
   </a>
   
@@ -988,18 +979,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#message-variations" class="md-nav__link">
+  <a href="#serial-message-format" class="md-nav__link">
     <span class="md-ellipsis">
-      Message Variations
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#serial-message-format-8-bytes-total" class="md-nav__link">
-    <span class="md-ellipsis">
-      Serial Message Format (8 Bytes Total)
+      Serial Message Format
     </span>
   </a>
   
@@ -1138,8 +1120,8 @@
                             UART ACK ← LED On
 </code></pre></div>
 <ul>
-<li>Shaurya uses the <strong>TC74A4-3.3VCTTR</strong> I2C temperature sensor.</li>
-<li>Aadish uses the <strong>IFX9201SG</strong> H-Bridge motor driver.</li>
+<li>Shaurya uses the <strong>AHT21</strong> I2C temperature sensor.</li>
+<li>Aadish uses the <strong>IFX9201SGAUMA1</strong> H-Bridge motor driver.</li>
 <li>UART is used for all communication between the two.</li>
 </ul>
 <hr />
@@ -1200,98 +1182,96 @@ end</code></pre>
 </thead>
 <tbody>
 <tr>
-<td>S</td>
+<td>0xFC</td>
 <td>Shaurya</td>
 </tr>
 <tr>
-<td>A</td>
+<td>0xFD</td>
 <td>Aadish</td>
 </tr>
 </tbody>
 </table>
 <hr />
 <h3 id="message-types">Message Types</h3>
+<p><strong>Type 1 – Motor Direction Command (Sent from Shaurya to Aadish)</strong></p>
 <table>
 <thead>
 <tr>
-<th>Type ID</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>Motor Direction Command</td>
-</tr>
-<tr>
-<td>2</td>
-<td>Acknowledgement (ACK)</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h3 id="message-variations">Message Variations</h3>
-<table>
-<thead>
-<tr>
-<th>Type</th>
-<th>Meaning</th>
+<th>Condition</th>
 <th>Message ID</th>
+<th>Meaning</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>1</td>
+<td>Temp ≤ 25°C</td>
+<td>0x01</td>
 <td>Motor Forward</td>
-<td>0x0040</td>
 </tr>
 <tr>
-<td>1</td>
+<td>25°C &lt; Temp ≤ 30°C</td>
+<td>0x02</td>
 <td>Motor Reverse</td>
-<td>0x0041</td>
 </tr>
 <tr>
-<td>2</td>
-<td>ACK</td>
-<td>0x00AF</td>
+<td>Temp &gt; 30°C</td>
+<td>0x03</td>
+<td>Motor Off</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Type 2 – Acknowledgment (Sent from Aadish to Shaurya)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Message ID</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0x01</td>
+<td>Motor Forward Confirmation – Blink RB0</td>
+</tr>
+<tr>
+<td>0x02</td>
+<td>Motor Reverse Confirmation – Blink RB4</td>
+</tr>
+<tr>
+<td>0x03</td>
+<td>Motor Off Confirmation – Blink RB0 &amp; RB4</td>
 </tr>
 </tbody>
 </table>
 <hr />
-<h3 id="serial-message-format-8-bytes-total">Serial Message Format (8 Bytes Total)</h3>
+<h3 id="serial-message-format">Serial Message Format</h3>
 <table>
 <thead>
 <tr>
-<th>Byte #</th>
-<th>Purpose</th>
-<th>Example Value</th>
+<th>Field</th>
+<th>Example (Motor Forward)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>1–2</td>
 <td>Prefix</td>
-<td><code>AZ</code></td>
+<td>FS</td>
 </tr>
 <tr>
-<td>3</td>
 <td>Sender ID</td>
-<td><code>S</code> or <code>A</code></td>
+<td>S</td>
 </tr>
 <tr>
-<td>4</td>
 <td>Receiver ID</td>
-<td><code>A</code> or <code>S</code></td>
+<td>A</td>
 </tr>
 <tr>
-<td>5–6</td>
-<td>Data (message ID)</td>
-<td>e.g., <code>0x0040</code></td>
+<td>Data</td>
+<td>01 (Forward)</td>
 </tr>
 <tr>
-<td>7–8</td>
 <td>Suffix</td>
-<td><code>YB</code></td>
+<td>FS</td>
 </tr>
 </tbody>
 </table>
@@ -1299,20 +1279,20 @@ end</code></pre>
 <h3 id="example-message-flow">Example Message Flow</h3>
 <h4 id="if-temperature-is-greater-than-25c-and-less-than-30c">If temperature is  greater than 25°C and less than 30°C:</h4>
 <ul>
-<li>Shaurya sends: <code>AZ</code>, <code>S</code>, <code>A</code>, <code>0x0040</code>, <code>YB</code></li>
+<li>Shaurya sends: <code>FS</code>, <code>S</code>, <code>A</code>, <code>0x02</code>, <code>FS</code></li>
 <li>Aadish sets motor direction <strong>forward</strong></li>
-<li>Aadish replies: <code>AZ</code>, <code>A</code>, <code>S</code>, <code>0x00AF</code>, <code>YB</code></li>
+<li>Aadish replies: <code>FS</code>, <code>A</code>, <code>S</code>, <code>0x02</code>, <code>FS</code></li>
 <li>Shaurya turns on LED to confirm ACK</li>
 </ul>
 <h4 id="if-temperature-is-less-than-25c">If temperature is less than 25°C:</h4>
 <ul>
-<li>Shaurya sends: <code>AZ</code>, <code>S</code>, <code>A</code>, <code>0x0041</code>, <code>YB</code></li>
+<li>Shaurya sends: <code>FS</code>, <code>S</code>, <code>A</code>, <code>0x01</code>, <code>FS</code></li>
 <li>Aadish sets motor direction <strong>reverse</strong></li>
 <li>Aadish replies with ACK and LED lights up</li>
 </ul>
 <h4 id="if-temperature-is-above-30c">If temperature is above 30°C:</h4>
 <ul>
-<li>Shaurya sends: <code>AZ</code>, <code>S</code>, <code>A</code>, <code>0x0041</code>, <code>YB</code></li>
+<li>Shaurya sends: <code>FS</code>, <code>S</code>, <code>A</code>, <code>0x03</code>, <code>FS</code></li>
 <li>Aadish sets motor direction <strong>stop</strong></li>
 <li>Aadish replies with ACK and LED lights up</li>
 </ul>
