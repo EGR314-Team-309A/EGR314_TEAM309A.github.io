@@ -75,16 +75,25 @@ end
 ```
 ### Explaination
 Our communication sequence diagram outlines the real-time interaction between the sensor and actuator subsystems:   
-- Temperature Reading: The PIC18F27Q10 on Shaurya's PCB reads the temperature sensor using I2C.   
-- Data Transmission: The temperature value is processed and transmitted via UART to Aadish's PCB.   
-- Motor Response: Upon receiving the temperature data, the PIC18F47Q10 interprets it and sends SPI commands to the motor driver, adjusting the motor’s speed or direction.   
+
+- Temperature Reading: The PIC18F27Q10 on Shaurya's PCB reads the temperature sensor using I2C.
+  
+- Data Transmission: The temperature value is processed and transmitted via UART to Aadish's PCB.
+  
+- Motor Response: Upon receiving the temperature data, the PIC18F47Q10 interprets it and sends SPI commands to the motor driver, adjusting the motor’s speed or direction.
+  
 - Feedback Signal (Optional): A confirmation or status signal can be sent back over UART to verify correct action.   
 
 This satisfies user needs by creating a system that is:   
-- Interactive: Motor behavior dynamically reflects real-time environmental data.   
-- Modular: Communication between independent subsystems is clearly defined.  
-- Scalable: The message structure and sequence allow for additional features like acknowledgments or error handling.  
-- The functional sequence supports intuitive behavior (e.g., motor speeding up in response to rising temperature), making it understandable and meaningful for both users and evaluators.  
+
+- Interactive: Motor behavior dynamically reflects real-time environmental data.
+  
+- Modular: Communication between independent subsystems is clearly defined.
+  
+- Scalable: The message structure and sequence allow for additional features like acknowledgments or error handling.
+  
+- The functional sequence supports intuitive behavior (e.g., motor speeding up in response to rising temperature), making it understandable and meaningful for both users and evaluators.
+  
 ---
 
 ## Message Structure
