@@ -616,6 +616,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#version-20-communication-architecture-improvements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Version 2.0 – Communication Architecture Improvements
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -779,6 +788,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#version-20-communication-architecture-improvements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Version 2.0 – Communication Architecture Improvements
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -863,6 +881,37 @@
 </li>
 <li>
 <p>Keep up with your documentation and commit code often, so that your reports and demos are easier to assemble when deadlines are tight.</p>
+</li>
+</ul>
+<h3 id="version-20-communication-architecture-improvements">Version 2.0 – Communication Architecture Improvements</h3>
+<p>If we were to create a Version 2.0 of our communication architecture and system design, we would focus on improving hardware reliability, user interaction, and development workflow to create a more robust and interactive experience.</p>
+<ul>
+<li>
+<p>Reliable Temperature Sensor Integration: In Version 1.0, our sensor had issues with reliably. For Version 2.0, we would select a tested temperature sensor and fully validate it using I2C scanning tools and oscilloscope monitoring to ensure accurate communication with the PIC18F series microcontrollers.</p>
+</li>
+<li>
+<p>Using the PIC18F47Q10 for Both Subsystems: Standardizing on the PIC18F47Q10 across both PCBs would unify our firmware, reduce debugging time, and simplify code development by avoiding hardware-specific variations.</p>
+</li>
+<li>
+<p>Improved PCB Modularity and Compactness: We would redesign the layout for a smaller, more modular PCB with clearer separation of subsystems (power, comms, logic). This would save space and reduce manufacturing costs while maintaining clarity in the hardware architecture.</p>
+</li>
+<li>
+<p>Verification of Soldering and Continuity: In Version 2.0, we would conduct thorough soldering checks and use a multimeter to test all critical traces and pins—especially for UART, SPI, and I2C—before powering the board.</p>
+</li>
+<li>
+<p>Incorporating Multiple Test Points: We would add test points on all major signal (UART pins, I2C pins and SPi pins) lines to allow quick and safe probing during debugging, reducing the risk of damaging the board and helping isolate faults faster.</p>
+</li>
+<li>
+<p>Early Setup of MPLAB X and MCC: We would fully configure MPLAB X and MCC Classic early in the semester, and build small test projects to confirm UART, SPI, and I2C setup before integrating them into the full system.</p>
+</li>
+<li>
+<p>Maximizing In-Class Lab Resources: Tools like oscilloscopes and in class labs would be used from day one. These would be invaluable in diagnosing signal integrity issues, timing problems, and confirming communication protocols.</p>
+</li>
+<li>
+<p>User-Readable Temperature Display: To improve usability and meet interactive display goals, we would implement a live temperature readout on an LCD or OLED display, allowing users to see the real-time sensor output.</p>
+</li>
+<li>
+<p>3D-Printed Spinning Top as a Physical Display: We would design and integrate a 3D-printed spinning top attached to the motor shaft. This would serve as a physical visualization of motor actuation—its speed or direction reflecting the current temperature range, adding a tactile, engaging element to our project.</p>
 </li>
 </ul>
 
