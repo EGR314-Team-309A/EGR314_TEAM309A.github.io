@@ -8,18 +8,18 @@ title: Block/Process Diagrams & Message Structure
 
 # Explaination:   
 As Team 309A in the EGR314 course, our project goal was to demonstrate modularity, sensor-actuator interaction, and the use of standard communication protocols. We structured the block diagram to reflect a clear division between sensing and actuation, each handled by custom-built PCBs developed by different team members.  
-  - Shaurya’s PCB integrates a temperature sensor with the PIC18F27Q10 microcontroller via I2C, enabling precise temperature readings with minimal wiring complexity.  
-  - Aadish’s PCB features a PIC18F47Q10 microcontroller that interfaces with the IFX9201SGAUMA1 motor driver via SPI, allowing fast, reliable motor control.  
-  - Inter-PCB communication is handled via UART, with TX and RX lines routed through pin 2 of our ribbon cable headers, satisfying the product requirement for UART-based data exchange between subsystems.  
-  - The ribbon cable simplifies physical connectivity, aligning both power and communication signals for ease of use and testing.  
+- Shaurya’s PCB integrates a temperature sensor with the PIC18F27Q10 microcontroller via I2C, enabling precise temperature readings with minimal wiring complexity.  
+- Aadish’s PCB features a PIC18F47Q10 microcontroller that interfaces with the IFX9201SGAUMA1 motor driver via SPI, allowing fast, reliable motor control.  
+- Inter-PCB communication is handled via UART, with TX and RX lines routed through pin 2 of our ribbon cable headers, satisfying the product requirement for UART-based data exchange between subsystems.  
+- The ribbon cable simplifies physical connectivity, aligning both power and communication signals for ease of use and testing.  
 
 This block structure meets all outlined requirements:  
-  - SPI for motor control  
-  - I2C for sensor reading  
-  - UART between PCBs  
-  - Shared PIC microcontroller family  
-  - One sensor (temperature) and one actuator (motor)  
-  - Compact and modular design using ribbon cables  
+- SPI for motor control  
+- I2C for sensor reading  
+- UART between PCBs  
+- Shared PIC microcontroller family  
+- One sensor (temperature) and one actuator (motor)  
+- Compact and modular design using ribbon cables  
 By designing a structured and readable block diagram, we ensured clarity in system functionality and adherence to modular design principles.  
 
 
@@ -60,18 +60,18 @@ loop Every 1s
   Shaurya->>Shaurya: Turn on ACK LED
 end
 ```
-# Explaination
+### Explaination
 Our communication sequence diagram outlines the real-time interaction between the sensor and actuator subsystems:   
-  - Temperature Reading: The PIC18F27Q10 on Shaurya's PCB reads the temperature sensor using I2C.   
-  - Data Transmission: The temperature value is processed and transmitted via UART to Aadish's PCB.   
-  - Motor Response: Upon receiving the temperature data, the PIC18F47Q10 interprets it and sends SPI commands to the motor driver, adjusting the motor’s speed or direction.   
-  - Feedback Signal (Optional): A confirmation or status signal can be sent back over UART to verify correct action.   
+- Temperature Reading: The PIC18F27Q10 on Shaurya's PCB reads the temperature sensor using I2C.   
+- Data Transmission: The temperature value is processed and transmitted via UART to Aadish's PCB.   
+- Motor Response: Upon receiving the temperature data, the PIC18F47Q10 interprets it and sends SPI commands to the motor driver, adjusting the motor’s speed or direction.   
+- Feedback Signal (Optional): A confirmation or status signal can be sent back over UART to verify correct action.   
 
 This satisfies user needs by creating a system that is:   
-  - Interactive: Motor behavior dynamically reflects real-time environmental data.   
-  - Modular: Communication between independent subsystems is clearly defined.  
-  - Scalable: The message structure and sequence allow for additional features like acknowledgments or error handling.  
-  - The functional sequence supports intuitive behavior (e.g., motor speeding up in response to rising temperature), making it understandable and meaningful for both users and evaluators.  
+- Interactive: Motor behavior dynamically reflects real-time environmental data.   
+- Modular: Communication between independent subsystems is clearly defined.  
+- Scalable: The message structure and sequence allow for additional features like acknowledgments or error handling.  
+- The functional sequence supports intuitive behavior (e.g., motor speeding up in response to rising temperature), making it understandable and meaningful for both users and evaluators.  
 ---
 
 ## Message Structure
