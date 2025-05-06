@@ -158,20 +158,21 @@ This satisfies user needs by creating a system that is:
 
 ---
 
-## Software Challenges:
-1. I2C Communication Failure with the Temperature Sensor PCB
-In early testing, we discovered that I2C communication between the PIC18F27Q10 microcontroller and the TC74 temperature sensor was unreliable or completely unresponsive. After multiple debugging attempts—including checking pull-up resistors, signal integrity, and addressing—we identified that the sensor was not properly recognizing the PIC18F27Q10. This issue stemmed from internal sensor bugs or timing mismatches. We resolved the problem by simulating temperature values in software and sending those over UART instead. This maintained the sensor-actuator interaction as originally intended while avoiding the hardware conflict.
+## Software Changes
+Updated I2C Pin Configuration for New Temperature Sensor
+Although we initially planned to use the TC74 temperature sensor, we replaced it with a different I2C-based temperature sensor (AHT21) due to communication issues. The only software change required was updating the SDA and SCL pin assignments in MPLAB X MCC (Classic) to match the new sensor’s wiring. The rest of the I2C configuration and data handling code remained unchanged.
 
-2. SPI Motor Driver Chip Select Pin Misconfiguration
-Another major issue arose with the SPI interface between the PIC18F47Q10 and the IFX9201SGAUMA1 motor driver. The Chip Select (CS) pin was mistakenly initialized as High at system startup. This caused failed communication or unpredictable motor responses. In SPI communication, the CS pin needs to be Low to initiate a valid transaction. After discovering this, we modified the code to explicitly set CS Low before any SPI initialization or motor command sequence. This small yet critical change restored correct functionality and motor responsiveness.
+Corrected SPI Chip Select (CS) Pin Handling for Motor Driver
+We modified the SPI motor control code to ensure the Chip Select (CS) pin is actively pulled Low before any SPI transaction with the IFX9201SGAUMA1 motor driver. This was done by explicitly setting the CS pin Low before SPI commands and setting it High afterward, ensuring consistent and reliable communication.
 
-3. Incorrect Use of MCC Melody for I2C Setup
-Our initial software plan involved using MCC Melody to configure all peripherals, including I2C. However, after days of non-functional communication, we realized that MCC Melody did not properly configure I2C on the PIC18F27Q10 for our needs. The interrupt handling and register settings were incomplete or incompatible. We switched to MCC Classic, which allowed manual control over I2C parameters and interrupt behavior. After regenerating the code in MCC Classic and rewriting the I2C ISR structure, communication stabilized and behaved predictably.
+Switched from MCC Melody to MCC Classic for Peripheral Configuration
+We transitioned from MCC Melody to MCC Classic for configuring I2C and SPI peripherals. MCC Classic provided more direct control over pin assignments and register-level settings, which allowed for a more stable and customizable software setup, especially for I2C communication.
 
-4. Redefining Address-Based Motor Commands
-To simplify the motor control logic on the receiving PCB, we restructured our UART message format to include specific numeric address codes that mapped directly to motor commands. Instead of sending raw temperature values or text commands, we began sending structured bytes like 0x01 for forward motion, 0x02 for reverse motion, and 0x03 for idle state. This approach reduced parsing complexity and improved reliability, especially during UART transmission. It also allowed us to easily modify or extend motor behavior by simply adding new address-function mappings.
+Refined UART Message Protocol with Command Byte Mapping
+We simplified the UART communication between microcontrollers by introducing fixed command bytes (e.g., 0x01 for forward, 0x02 for reverse, 0x03 for stop). This replaced the earlier format that transmitted raw or string-based data, reducing complexity on the motor control side.
 
-5. Logic Errors in Temperature-to-Motor Mapping
-Initially, the motor speed/direction logic based on temperature values was inconsistent. In some cases, low temperatures were incorrectly triggering high-speed motor commands. This happened because we had no defined temperature thresholds or ranges. We corrected this by introducing clear boundaries: e.g., temperatures 72–75°C mapped to one motor state, while 86–92°C (triggered by button press) mapped to another. This structured mapping ensured the motor behavior matched the sensor data and provided a reliable user experience.
+Established Clear Temperature-to-Command Logic
+We updated the software to map specific temperature ranges to motor commands. For example, when the temperature sensor reports values between 25–30°C, the motor moves forward. When the temperature reads below 25°C—triggered by a sensor board—the motor reverses. This mapping made the system behavior consistent and predictable.
+
 
 
