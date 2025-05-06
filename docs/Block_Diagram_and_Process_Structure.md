@@ -13,13 +13,15 @@ As Team 309A in the EGR314 course, our project goal was to demonstrate modularit
 - Inter-PCB communication is handled via UART, with TX and RX lines routed through pin 2 of our ribbon cable headers, satisfying the product requirement for UART-based data exchange between subsystems.  
 - The ribbon cable simplifies physical connectivity, aligning both power and communication signals for ease of use and testing.  
 
-This block structure meets all outlined requirements:  
-- SPI for motor control  
-- I2C for sensor reading  
-- UART between PCBs  
-- Shared PIC microcontroller family  
-- One sensor (temperature) and one actuator (motor)  
-- Compact and modular design using ribbon cables  
+This block structure meets all outlined requirements:   
+- SPI for motor control.   
+- I2C for sensor reading.   
+- UART between PCBs.   
+- Shared PIC microcontroller family.   
+- One sensor (temperature) and one actuator (motor).   
+- Compact and modular design using ribbon cables.  
+.
+
 By designing a structured and readable block diagram, we ensured clarity in system functionality and adherence to modular design principles.  
 
 
